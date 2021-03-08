@@ -27,12 +27,12 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        Model model = new Model();
+        Temperature temperature = new Temperature();
+        CityModel cityModel = new CityModel();
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
             switch (message.getText()) {
-                case "/start":
-                    sendMsg(message, """
+                case "/start": sendMsg(message, """
                             Какой город тебя интересует?""");
                     break;
                 case "/help":
@@ -45,7 +45,7 @@ public class Bot extends TelegramLongPollingBot {
                     break;
                 default:
                     try {
-                        sendMsg(message, Weather.getWeather(message.getText(), model));
+                        sendMsg(message, City.getCity(message.getText(),cityModel,temperature));
                     } catch (IOException ex) {
                         sendMsg(message, "Город не найден");
                     }
