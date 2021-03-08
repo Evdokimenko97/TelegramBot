@@ -1,13 +1,13 @@
+package Model;
 
-public class Temperature {
+public class TemperatureModel {
 
     private Double temp1;
     private Double temp2;
     private Double temp3;
     private Double temp4;
     private Double temp5;
-    private Double MaxTemp;
-    private Double MiddleTemp;
+
 
     public Double getTemp1() {
         return temp1;
@@ -47,21 +47,5 @@ public class Temperature {
 
     public void setTemp5(Double temp5) {
         this.temp5 = temp5;
-    }
-
-    public Double getMaxTemp() {
-        return MaxTemp;
-    }
-
-    public void setMaxTemp(Double maxTemp) {
-        MaxTemp = maxTemp;
-    }
-
-    public Double getMiddleTemp() {
-        return MiddleTemp;
-    }
-
-    public void setMiddleTemp(Double middleTemp) {
-        MiddleTemp = middleTemp;
     }
 }

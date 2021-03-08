@@ -1,3 +1,5 @@
+import Model.CityModel;
+import Model.TemperatureModel;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
@@ -25,27 +27,22 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    //переопределённый метод для принятия сообщения
     @Override
     public void onUpdateReceived(Update update) {
-        Temperature temperature = new Temperature();
+        TemperatureModel temperatureModel = new TemperatureModel();
         CityModel cityModel = new CityModel();
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
             switch (message.getText()) {
-                case "/start": sendMsg(message, """
-                            Какой город тебя интересует?""");
+                case "/start": sendMsg(message, "Какой город тебя интересует?");
                     break;
                 case "/help":
-                    sendMsg(message, "Чем могу помочь?");
-                    break;
-                case "/setting":
-                    sendMsg(message, """
-                    Данная функция позволяет добавлять кнопку с названием твоего города.
-                    Напиши город, который ты хочешь установить.""");
+                    sendMsg(message, "Данная функция находится в разработке.");
                     break;
                 default:
                     try {
-                        sendMsg(message, City.getCity(message.getText(),cityModel,temperature));
+                        sendMsg(message, City.getCity(message.getText(),cityModel, temperatureModel));
                     } catch (IOException ex) {
                         sendMsg(message, "Город не найден");
                     }
@@ -54,6 +51,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    //добавляем кнопки
     public void setButtons(SendMessage sendMessage) {
         ReplyKeyboardMarkup keyBoard = new ReplyKeyboardMarkup();
         sendMessage.setReplyMarkup(keyBoard);
@@ -65,17 +63,16 @@ public class Bot extends TelegramLongPollingBot {
         KeyboardRow keyboardRow = new KeyboardRow();
 
         keyboardRow.add(new KeyboardButton("/help"));
-        keyboardRow.add(new KeyboardButton("/setting"));
 
         rows.add(keyboardRow);
         keyBoard.setKeyboard(rows);
     }
 
+    //отправка сообщения
     private void sendMsg(Message message, String text) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
-//        sendMessage.setReplyToMessageId(message.getMessageId());
         sendMessage.setText(text);
 
         try {
