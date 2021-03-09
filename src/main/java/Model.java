@@ -1,47 +1,47 @@
 public class Model {
-    private String name;
-    private Double temp;
-    private Double humidity;
-    private String icon;
-    private String main;
+    private Double temp1;
+    private Double temp2;
+    private Double temp3;
+    private Double temp4;
+    private Double temp5;
 
-    public String getName() {
-        return name;
+    public Double getTemp1() {
+        return temp1;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTemp1(Double temp1) {
+        this.temp1 = temp1;
     }
 
-    public Double getTemp() {
-        return temp;
+    public Double getTemp2() {
+        return temp2;
     }
 
-    public void setTemp(Double temp) {
-        this.temp = temp;
+    public void setTemp2(Double temp2) {
+        this.temp2 = temp2;
     }
 
-    public Double getHumidity() {
-        return humidity;
+    public Double getTemp3() {
+        return temp3;
     }
 
-    public void setHumidity(Double humidity) {
-        this.humidity = humidity;
+    public void setTemp3(Double temp3) {
+        this.temp3 = temp3;
     }
 
-    public String getIcon() {
-        return icon;
+    public Double getTemp4() {
+        return temp4;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setTemp4(Double temp4) {
+        this.temp4 = temp4;
     }
 
-    public String getDescription() {
-        return main;
+    public Double getTemp5() {
+        return temp5;
     }
 
-    public void setDescription(String main) {
-        this.main = main;
+    public void setTemp5(Double temp5) {
+        this.temp5 = temp5;
     }
 }
